@@ -57,7 +57,7 @@ public class Pantalla_Habitacion extends JFrame  {
 		JPanel base2 = new JPanel();
 		base2.setBackground(new Color(244,238,226));
 		//base.setSize(new Dimension (300,300));
-		base2.setLayout(new GridLayout(7,1));
+		base2.setLayout(new GridLayout(13,1));
 		base2.setVisible(true);
 		
 		JLabel label1 = new JLabel (respuesta.get(0));
@@ -68,6 +68,12 @@ public class Pantalla_Habitacion extends JFrame  {
 		JLabel label6 = new JLabel (respuesta.get(5));
 		JLabel label7 = new JLabel (respuesta.get(6));
 		JLabel label8 = new JLabel (respuesta.get(7));
+//		JLabel label9 = new JLabel (respuesta.get(8));
+//		JLabel label10 = new JLabel (respuesta.get(9));
+//		JLabel label11 = new JLabel (respuesta.get(10));
+//		JLabel label12 = new JLabel (respuesta.get(11));
+//		JLabel label13 = new JLabel (respuesta.get(12));
+
 		
 		base2.add( label1);
 		base2.add( label2);
@@ -77,6 +83,11 @@ public class Pantalla_Habitacion extends JFrame  {
 		base2.add( label6);
 		base2.add( label7);
 		base2.add( label8);
+//		base2.add( label9);
+//		base2.add( label10);
+//		base2.add( label11);
+//		base2.add( label12);
+//		base2.add( label13);
 		
 		
 		frame.add(base2,BorderLayout.CENTER);

@@ -8,11 +8,14 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import Interfaz.DialogoEmpleado;
+import Interfaz.DialogoHuesped;
 import Interfaz.Pantalla_Habitacion;
 import Interfaz.Principal_admin;
 import Modelo.Administrador;//ESTO
 import Modelo.CoordinadorInventario;
 import Modelo.Hotel;//ESTO
+import Modelo.Huespedus;
 import Modelo.Recepcionista;
 import Modelo.Trabajador;
 import Interfaz.VentanaPrincipal;
@@ -23,6 +26,7 @@ public class Aplicacion {
 	private static ArrayList<Administrador> listaAdministradores= new ArrayList<Administrador>();
 	private static ArrayList<Recepcionista> listaRecepcionista= new ArrayList<Recepcionista>();
 	private static ArrayList<Trabajador>listaTrabajadores = new ArrayList<Trabajador>();
+	private static ArrayList<Huespedus>listaHuespedes = new ArrayList<Huespedus>();
 	
 	
 	public static void main(String[] args) {
@@ -69,6 +73,19 @@ public class Aplicacion {
 			listaRecepcionista.add(nuevo);
 
 		}
+		
+		else if (opcion ==3 ) 
+		{
+			Trabajador nuevo = new Trabajador(nombre2,login2,contrasena2);
+			listaTrabajadores.add(nuevo);
+		}
+		
+		else if (opcion == 4 ) 
+		{
+			Huespedus nuevo = new Huespedus(nombre2,login2,contrasena2);
+			listaHuespedes.add(nuevo);
+		}
+		
 		else {
 			JOptionPane.showMessageDialog(null, "Archivo cargado", "Archivo", JOptionPane.ERROR_MESSAGE);
 		}
@@ -76,7 +93,7 @@ public class Aplicacion {
 	}
 	public void iniciarSesion() {
 		boolean encontrado = false;
-		int opcion =Integer.parseInt( JOptionPane.showInputDialog("Porfavor Seleccione el tipo de empleado: \n1. Administrador 2. Recepcionista 3. Otro "));
+		int opcion =Integer.parseInt( JOptionPane.showInputDialog("Porfavor Seleccione el tipo de empleado: \n1. Administrador 2. Recepcionista 3. Otro  4. Huesped"));
 		
 		String login = JOptionPane.showInputDialog("Ingrese su login:  ");
 		String clave = JOptionPane.showInputDialog("Ingrese su clave:  ");
@@ -91,6 +108,8 @@ public class Aplicacion {
 				Principal_admin intento = new  Principal_admin(); 
 				//AplicacionAdministrador();
 			}
+			
+			
 			else {
 				JOptionPane.showMessageDialog(null, "No se encontro el usuario", "ERROR", JOptionPane.INFORMATION_MESSAGE);
 	
@@ -114,8 +133,45 @@ public class Aplicacion {
 				
 			}
 			}
-		else if (opcion ==3) {
-			// LOG IN DE OTROS 
+		
+		else if (opcion ==3) 
+		{
+			for (int a =0 ; a<listaTrabajadores.size();a++) {
+				if (listaTrabajadores.get(a).getLogin().equals(login) && listaTrabajadores.get(a).getClave().equals(clave)) {
+					
+					encontrado= true;
+				}
+			}
+			if (encontrado ==true) {
+				DialogoEmpleado dialogEmpleado = new  DialogoEmpleado(); 
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "No se encontro el usuario", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+	
+				
+			}
+		}
+		
+		else if (opcion ==4) 
+		{
+			for (int a =0 ; a<listaHuespedes.size();a++) {
+				if (listaHuespedes.get(a).getLogin().equals(login) && listaHuespedes.get(a).getClave().equals(clave)) {
+					
+					encontrado= true;
+				}
+			}
+			if (encontrado ==true) {
+				DialogoHuesped dialogoHuesped = new  DialogoHuesped(); 
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "No se encontro el usuario", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+	
+				
+			}
+		}
+		
+		else {
+			JOptionPane.showMessageDialog(null, "Archivo cargado", "Archivo", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	

@@ -7,21 +7,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import Modelo.CoordinadorDeServicios;
-import Modelo.CoordinadorInventario;
 
-public class DialogoEmpleado extends JFrame implements ActionListener
+public class DialogoHuesped extends JFrame implements ActionListener
 {
-    private JLabel espacio;
+	private JLabel espacio;
     private JButton btnAnadirConsumo;
     private JButton btnConsultarServicio;
     private JButton btnRealizarPago;
@@ -34,7 +31,7 @@ public class DialogoEmpleado extends JFrame implements ActionListener
 
 
 
-	public DialogoEmpleado()
+	public DialogoHuesped()
     {
 		
 		setLocationRelativeTo(principal);

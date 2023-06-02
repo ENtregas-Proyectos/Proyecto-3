@@ -14,7 +14,7 @@ import Modelo.CoordinadorInventario;
 
 public class PanelUsuarios extends JPanel implements ActionListener
 {
-	//public CoordinadorInventario Coordinador = new CoordinadorInventario();
+	public CoordinadorInventario Coordinador = new CoordinadorInventario();
 	public Aplicacion aplicacion = new Aplicacion();
 	
 	private JLabel etiquetaImagen;

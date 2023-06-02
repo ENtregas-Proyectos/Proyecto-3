@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Set;
 
 import Modelo.CatalogoServicios;
@@ -32,6 +33,8 @@ public class CoordinadorDeServicios
 		System.out.println("7. Consultar Servicios");
 		System.out.println("8. Consultar cuenta habitacion ");
 		System.out.println("9.Salir\n\n");
+		
+		
 
 		
 		
@@ -75,27 +78,22 @@ public class CoordinadorDeServicios
 		
 	}
 	
-	public void AgregarServicioAHabitacion() 
+	public void AgregarServicioAHabitacion(String nombre, String srv, int precio, int rta, String empleado) 
 	{
 		boolean continuar = true;
 		System.out.println("Añadir un servicio a numero de habitacion");
 		while (continuar) 
 		{
 			System.out.println("Cual es el numero de la habitacion?");
-			 String nombre = input(" ");
-			 String empleado = input("Digite su nombre como empleado registrado en el sistema: ");
-			 String srv = input("Digite el nombre del servicio: ");
-			 int precio = Integer.parseInt(input("Cual es el precio del servicio?: "));
 			 Consumo nuevo = new Consumo(nombre, empleado,srv, precio);
 			 listaConsumos.put(nombre, nuevo);
-			 String rta = input("Desea realizar su pago en este momento? ");
-			 if (rta == "si")
+			 if (rta == 1)
 			 {
-				 RegistrarPago();
+				 RegistrarPago(nombre, empleado, srv, precio);
 				 
 			 }
 			 
-			 else if(rta == "no")
+			 else if(rta == 2)
 			 {
 				 continuar = false;
 			 }
@@ -104,26 +102,21 @@ public class CoordinadorDeServicios
 		}
 	}
 	
-	public void AgregarServicioAHuesped() 
+	public void AgregarServicioAHuesped(String nombre, String srv, int precio, int rta, String empleado) 
 	{
 		boolean continuar = true;
 		System.out.println("Añadir un servicio a nombre de huesped");
 		while (continuar) {
 			System.out.println("Cual es el nombre del huesped? ");
-			 String nombre = input(" ");
-			 String empleado = input("Digite su nombre como empleado registrado en el sistema: ");
-			 String srv = input("Digite el nombre del servicio: ");
-			 int precio = Integer.parseInt(input("Cual es el precio del servicio?: "));
 			 Consumo nuevo = new Consumo(nombre, empleado, srv, precio);
 			 listaConsumos.put(nombre, nuevo);
-			 String rta = input("Desea realizar su pago en este momento? ");
-			 if (rta == "si")
+			 if (rta == 1)
 			 {
-				 RegistrarPago();
+				 RegistrarPago(nombre, empleado, srv, precio);
 				 
 			 }
 			 
-			 else if(rta == "no")
+			 else if(rta == 2)
 			 {
 				 continuar = false;
 			 }
@@ -131,25 +124,23 @@ public class CoordinadorDeServicios
 	}
 	}
 	
-	public void RegistrarPago()
+	public void RegistrarPago(String nombre, String empleado, String srv, int precio)
 	{
 		boolean continuar = true;
 		System.out.println("Añadir un servicio a nombre de huesped");
 		while (continuar) {
 			System.out.println("Cual es el nombre del huesped? ");
-			 String nombre = input(" ");
-			 String empleado = input("Digite su nombre como empleado registrado en el sistema: ");
-			 String srv = input("Digite el nombre del servicio: ");
-			 int precio = Integer.parseInt(input("Cual es el precio del servicio?: "));
 			 Consumo nuevo = new Consumo(nombre, empleado, srv, precio);
 			 listaConsumos.put(nombre, nuevo);
 			 continuar=false;
+			 System.out.println(listaConsumos);
 	}
 	}
 	
 	public void consultarServicios() 
 	{
 		 Set<String> nombres = listaServicios.keySet();
+		 System.out.println(listaServicios);
 		 Object[] nuevo = nombres.toArray();
 		 
 		 for ( int a =0 ; a< listaServicios.size(); a++) 
@@ -161,19 +152,29 @@ public class CoordinadorDeServicios
 
 
 
-public void consultarServicio()
-{
-	Servicio aBuscar = listaServicios.get(input("Cual es el nombre del servicio que desea consultar? "));
-	mostrarServicio(aBuscar);
+	public List<String> consultarServicio(String serv)
+	{
 	
-}
+		Servicio aBuscar = listaServicios.get(serv);
+		System.out.println(aBuscar);
+		List<String> respuesta = mostrarServicio(aBuscar);
+		return respuesta;
+	
+		
+	}
 
-private void mostrarServicio(Servicio aBuscar) 
-{
-	System.out.println("El precio del servicio: "+aBuscar.getNombre()+ " es: ");
-	System.out.println("Precio: "+aBuscar.getPrecio());
-
-}
+	private List<String> mostrarServicio(Servicio aBuscar) 
+	{
+		
+		List <String> respuesta= new ArrayList <String>();
+		
+		respuesta.add("Nombre: "+aBuscar.getNombre() + "\n");
+		respuesta.add("Tarifa: "+aBuscar.getPrecio()+ "\n");
+		
+		return respuesta;
+		
+	
+	}
 
 
 public Factura generarFactura(Servicio servicio)
