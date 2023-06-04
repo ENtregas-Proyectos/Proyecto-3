@@ -32,6 +32,8 @@ public class Principal_admin extends JFrame implements ActionListener{
 	private static  JButton ConsultarHabitacion ;
 	private static JButton ConsultarReserva ;
 	private static JButton Cerrar;
+
+	private static JButton reportes;
 	
 	 
 		
@@ -55,6 +57,7 @@ public class Principal_admin extends JFrame implements ActionListener{
 		ConsultarHabitacion.addActionListener(this);
 		ConsultarReserva.addActionListener(this);
 		Cerrar.addActionListener(this);
+		reportes.addActionListener(this);
 		Coordinador.iniciar();
 	}
 
@@ -71,7 +74,7 @@ public class Principal_admin extends JFrame implements ActionListener{
 		JPanel base = new JPanel();
 		base.setBackground(new Color(244,238,226));
 		base.setPreferredSize(new Dimension(200,200));
-		base.setLayout(new GridLayout(4,2));
+		base.setLayout(new GridLayout(5,2));
 		base.setVisible(true);
 		
 		CrearInventario = new JButton("Crear Inventario de Habitaciones");
@@ -83,6 +86,7 @@ public class Principal_admin extends JFrame implements ActionListener{
 		ConsultarHabitacion = new JButton("Consultar informacion de una Habitacion");
 		ConsultarReserva = new JButton("Consultar reserva en una fecha determinada");
 		Cerrar = new JButton ("Cerrar Ventana");
+		reportes = new JButton("Reportes");
 	
 		base.add(CrearInventario);
 		base.add(CargarArchivo);
@@ -93,6 +97,7 @@ public class Principal_admin extends JFrame implements ActionListener{
 		base.add(ConsultarHabitacion);
 		base.add(ConsultarReserva);
 		base.add(Cerrar);
+		base.add(reportes);
 		frame.add(base, BorderLayout.CENTER);
 	}
 
@@ -145,6 +150,11 @@ public class Principal_admin extends JFrame implements ActionListener{
 		}
 		if ( e.getSource()== ConsultarReserva) {
 			System.out.println("Consultar reserva");
+		}
+		
+		if ( e.getSource()== reportes)
+		{
+			PantallaReportes panReportes = new PantallaReportes();
 		}
 		if (e.getSource()== Cerrar) {
 			this.dispose();

@@ -85,7 +85,7 @@ public class Hotel
 				servicio.escribirArchivo();
 			}
 			else if (opcion == 6) {
-				servicio.RegistrarPago();
+				servicio.RegistrarPago(null, null, null, opcion);
 				servicio.escribirArchivo();
 			}
 			else if (opcion == 7 ) {

@@ -62,7 +62,7 @@ public class Aplicacion {
 		String nombre2 = JOptionPane.showInputDialog("Ingrese su nombre");
     	String login2 = JOptionPane.showInputDialog("Ingrese su login");
         String contrasena2 = JOptionPane.showInputDialog("Ingrese su Contraseña");
-		int opcion = Integer.parseInt(JOptionPane.showInputDialog("Porfavor Seleccione el tipo de empleado\n 1. Administrador 2. Recepcionista 3. Otro "));
+		int opcion = Integer.parseInt(JOptionPane.showInputDialog("Porfavor Seleccione el tipo de empleado\n 1. Administrador 2. Recepcionista 3. Huesped 4. Otro "));
 		
 		if (opcion ==1 ) {
 			Administrador nuevo = new Administrador(nombre2,login2,contrasena2);
@@ -74,13 +74,13 @@ public class Aplicacion {
 
 		}
 		
-		else if (opcion ==3 ) 
+		else if (opcion ==4 ) 
 		{
 			Trabajador nuevo = new Trabajador(nombre2,login2,contrasena2);
 			listaTrabajadores.add(nuevo);
 		}
 		
-		else if (opcion == 4 ) 
+		else if (opcion == 3 ) 
 		{
 			Huespedus nuevo = new Huespedus(nombre2,login2,contrasena2);
 			listaHuespedes.add(nuevo);
@@ -93,7 +93,7 @@ public class Aplicacion {
 	}
 	public void iniciarSesion() {
 		boolean encontrado = false;
-		int opcion =Integer.parseInt( JOptionPane.showInputDialog("Porfavor Seleccione el tipo de empleado: \n1. Administrador 2. Recepcionista 3. Otro  4. Huesped"));
+		int opcion =Integer.parseInt( JOptionPane.showInputDialog("Porfavor Seleccione el tipo de empleado: \n1. Administrador 2. Recepcionista 3. Huesped  4. otro"));
 		
 		String login = JOptionPane.showInputDialog("Ingrese su login:  ");
 		String clave = JOptionPane.showInputDialog("Ingrese su clave:  ");
@@ -134,7 +134,7 @@ public class Aplicacion {
 			}
 			}
 		
-		else if (opcion ==3) 
+		else if (opcion ==4) 
 		{
 			for (int a =0 ; a<listaTrabajadores.size();a++) {
 				if (listaTrabajadores.get(a).getLogin().equals(login) && listaTrabajadores.get(a).getClave().equals(clave)) {
@@ -152,7 +152,7 @@ public class Aplicacion {
 			}
 		}
 		
-		else if (opcion ==4) 
+		else if (opcion ==3) 
 		{
 			for (int a =0 ; a<listaHuespedes.size();a++) {
 				if (listaHuespedes.get(a).getLogin().equals(login) && listaHuespedes.get(a).getClave().equals(clave)) {
