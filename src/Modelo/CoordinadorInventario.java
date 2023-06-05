@@ -50,8 +50,22 @@ public class CoordinadorInventario {
 				String tipo= partes[5];
 				String extras= partes[6];
 				String tarifa = partes[7]; 
-				ArrayList<String> TamanosCamas= arreglarTamano(tamano);
-				Habitacion nuevo = new Habitacion(numero, ubicacion, capacidad, camas, TamanosCamas, tipo, extras, tarifa);
+				
+				
+				Boolean Aire = Boolean.parseBoolean(partes[8]);
+				Boolean calefaccion = Boolean.parseBoolean(partes[9]);
+				String dimensionCamas = partes[10];
+				Boolean television = Boolean.parseBoolean(partes[11]);
+				Boolean cafetera = Boolean.parseBoolean(partes[12]);
+				Boolean hipoalergenicos = Boolean.parseBoolean(partes[13]);
+				Boolean plancha = Boolean.parseBoolean(partes[14]);
+				Boolean secador = Boolean.parseBoolean(partes[15]);
+				String voltaje = partes[16];
+				Boolean USBA = Boolean.parseBoolean(partes[17]);
+				Boolean USBC = Boolean.parseBoolean(partes[18]);
+				Boolean desayuno = Boolean.parseBoolean(partes[19]);
+				Habitacion nuevo = new Habitacion(numero, ubicacion, capacidad, camas, tamano, tipo, extras, tarifa,Aire,calefaccion,dimensionCamas,television,cafetera, hipoalergenicos
+						,plancha,secador,voltaje,USBA,USBC,desayuno);
 				listaHabitaciones.put(numero, nuevo);
 				linea = br.readLine();
 		}
@@ -73,55 +87,16 @@ public class CoordinadorInventario {
 		return TamanosCamas;
 		
 	}
-	public void AgregarCuarto() {
-		boolean continuar = true;
-		System.out.println("Añadir Cuarto Manualmente");
-		while (continuar) {
-			System.out.println("Cual es el nombre de la habitacion?");
-			 String nombre = JOptionPane.showInputDialog("Ingrese el numero de la Habitacion");
-			 String ubicacion = JOptionPane.showInputDialog("Ingrese la ubicacion de la Habitacion: ");
-			 int capacidad = Integer.parseInt(JOptionPane.showInputDialog("Cual es la capacidad de la habiatcion :"));
-			 int camas =Integer.parseInt(JOptionPane.showInputDialog("Cuantas camas tiene la habitacion: "));
-			 String tamano = JOptionPane.showInputDialog("Cual es el tamano de las camas en la habitacion? \n(Si hay mas de una cama porfavor ingresar los tamanos separados por comas, ej Queen,King)");
-		 	 String tipo= JOptionPane.showInputDialog("Cual es el tipo de la habitacion?");
-			 String extras = JOptionPane.showInputDialog("Que caracteristicas extra tiene la habitacion?");
-			 ArrayList<String> TamanosCamas= arreglarTamano(tamano);
-			 String tarifa = JOptionPane.showInputDialog("Cual es la tarifa de la habitacion");
-			 Habitacion nuevo = new Habitacion(nombre, ubicacion, capacidad, camas, TamanosCamas, tipo, extras, tarifa);
-			 listaHabitaciones.put(nombre, nuevo);
-			 continuar=false;
-			 System.out.print("listo");
-			 
-			 
-			 
-			 
-			 
-		
-	}
-		
-		
+	
+	public void anadir (Habitacion nuevo, String nombre) {
+		listaHabitaciones.put(nombre, nuevo);
 	}
 	public void modificarCuarto() {
 		String viejo = JOptionPane.showInputDialog("Cual es el nombre de la habitacion que desea modificar?");
 		Habitacion aModificar = listaHabitaciones.get(viejo);
 		mostrarHabitacion(aModificar);
-		System.out.println(" A continuacion ingrese la nueva infromacion para la habitacion "+aModificar.getNumero());
+		listaHabitaciones.remove(viejo);
 		
-		
-	 	String nombre = JOptionPane.showInputDialog("Cual es el nombre de la habitacion? ");
-		String ubicacion = JOptionPane.showInputDialog("Cual es la ubicacion de la habitacion?");
-		int capacidad = Integer.parseInt(JOptionPane.showInputDialog("Cual es la capacidad de la habitacion?"));
-		int camas =Integer.parseInt(JOptionPane.showInputDialog("Cuantas camas tiene la habitacion?"));
-	 	String tamano2= JOptionPane.showInputDialog("Cual es el tamano de las camas en la habitacion? \n(Si hay mas de una cama porfavor ingresar los tamanos separados por comas, ej Queen,King)");
-		String tipo= JOptionPane.showInputDialog("Cual es el tipo de la habitacion?");
-		String extras= JOptionPane.showInputDialog("Que caracteristicas extra tiene la habitacion?");
-		ArrayList<String> TamanosCamas2= arreglarTamano(tamano2);
-		String tarifa = JOptionPane.showInputDialog ("Cual es la tarifa de la habitacion");
-		Habitacion nuevo = new Habitacion(nombre, ubicacion, capacidad, camas, TamanosCamas2, tipo, extras, tarifa);
-	 	
-	 	listaHabitaciones.remove(viejo);
-	 	listaHabitaciones.put(nombre, nuevo);
-	 	System.out.println(listaHabitaciones.get(nombre).getExtra());
 	 	
 	 	
 	 	
@@ -156,8 +131,12 @@ public class CoordinadorInventario {
 		 String texto = "\nNombre: "+nuevo[a] +"--------------->";
 		 texto += ("\t\t Ubicacion: "+ listaHabitaciones.get(nuevo[a]).getUbicacion()+ "\n\t\t Capacidad: "+ listaHabitaciones.get(nuevo[a]).getCapacidad() +"\n\t\t Tipo: "+
 				 listaHabitaciones.get(nuevo[a]).getTipo()+"\n\t\t Caracteristicas Extra: "+ listaHabitaciones.get(nuevo[a]).getExtra()+"\n\t\t Tarifa: "+ listaHabitaciones.get(nuevo[a]).getTarifa()
-				 + "\n\t\t Tamano Camas: "+ listaHabitaciones.get(nuevo[a]).getTamano());
+				 + "\n\t\t Tamano Camas: "+ listaHabitaciones.get(nuevo[a]).getTamano()+ "\n\t\t AireAcondicionado: "+ listaHabitaciones.get(nuevo[a]).getAire() + "\n\t\t Calefaccion: "+ listaHabitaciones.get(nuevo[a]).getCalefaccion()+ "\n\t\t Dimensiones Camas: "+ listaHabitaciones.get(nuevo[a]).getDimensionesCamas()+ "\n\t\t Television: "+ listaHabitaciones.get(nuevo[a]).getTV()
+				 + "\n\t\t Cafetera: "+ listaHabitaciones.get(nuevo[a]).getCafetera()+ "\n\t\t Cama y Tapete Hipoalergenicos: "+ listaHabitaciones.get(nuevo[a]).getHipo()+ "\n\t\t Plancha: "+ listaHabitaciones.get(nuevo[a]).getPlancha()+ "\n\t\t Secador: "+ listaHabitaciones.get(nuevo[a]).getSecador()+ "\n\t\t Voltaje AC: "+ listaHabitaciones.get(nuevo[a]).getVoltaje()+ "\n\t\t Toma USB-A: "+ listaHabitaciones.get(nuevo[a]).getUSBA()
+				 + "\n\t\t Tomas USB-C: "+ listaHabitaciones.get(nuevo[a]).getUSBC()+ "\n\t\t Incluye Desayuno: "+ listaHabitaciones.get(nuevo[a]).getDesayuno());
+				 
 		
+		 
 		 
 		
 		inventariofinal.add(texto);
@@ -186,6 +165,18 @@ public class CoordinadorInventario {
 		respuesta.add("Caracteristicas Extras:  "+nombre.getExtra()+ "\n");
 		respuesta.add("Tarifa: "+nombre.getTarifa()+ "\n");
 		
+		respuesta.add("Aire Acondicionado: "+nombre.getAire()+"\n");
+		respuesta.add("Calefaccion: "+nombre.getCalefaccion()+"\n");
+		respuesta.add("Dimensiones camas: "+nombre.getDimensionesCamas()+"\n");
+		respuesta.add("Television : "+nombre.getTV()+"\n");
+		respuesta.add("Cafetera: "+nombre.getCafetera()+"\n");
+		respuesta.add("Cama y tapete Hipoalergenicos: "+nombre.getHipo()+"\n");
+		respuesta.add("Plancha: "+nombre.getPlancha()+"\n");
+		respuesta.add("Secador de pelo : "+nombre.getSecador()+"\n");
+		respuesta.add("Voltaje AC: "+nombre.getVoltaje()+"\n");
+		respuesta.add("Tomas USB-A: "+nombre.getUSBA()+"\n");
+		respuesta.add("Tomas USB-C : "+nombre.getUSBC()+"\n");
+		respuesta.add("Incluye desayuno: "+nombre.getDesayuno()+"\n");
 		return respuesta;
 		
 	}
@@ -221,6 +212,8 @@ public class CoordinadorInventario {
 	
 	public void escribirArchivo() {
 		String data = escribirInventario();
+		System.out.println("hola"+data);
+		System.out.println(listaHabitaciones.size());
 
 	    try {
 	      // Creates a FileWriter
@@ -246,7 +239,9 @@ public class CoordinadorInventario {
 		Object[] nuevo = nombres.toArray();
 		for (int a =0 ; a < listaHabitaciones.size(); a++) {
 			fin+= listaHabitaciones.get(nuevo[a]).getNumero()+ ";" + listaHabitaciones.get(nuevo[a]).getUbicacion()+ ";" +
-		Integer.toString(listaHabitaciones.get(nuevo[a]).getCapacidad())+ ";" +Integer.toString(listaHabitaciones.get(nuevo[a]).getCamas())+ ";" +listaHabitaciones.get(nuevo[a]).getTamanoString()+ ";" + listaHabitaciones.get(nuevo[a]).getTipo()+ ";" + listaHabitaciones.get(nuevo[a]).getExtra()+ ";" + listaHabitaciones.get(nuevo[a]).getTarifa()+ "\n";
+		Integer.toString(listaHabitaciones.get(nuevo[a]).getCapacidad())+ ";" +Integer.toString(listaHabitaciones.get(nuevo[a]).getCamas())+ ";" +listaHabitaciones.get(nuevo[a]).getTamano()+ ";" + listaHabitaciones.get(nuevo[a]).getTipo()+ ";" + listaHabitaciones.get(nuevo[a]).getExtra()+ ";" + listaHabitaciones.get(nuevo[a]).getTarifa()+ 
+		";" + listaHabitaciones.get(nuevo[a]).getAire()+";"+listaHabitaciones.get(nuevo[a]).getCalefaccion()+";"+listaHabitaciones.get(nuevo[a]).getDimensionesCamas()+";"+listaHabitaciones.get(nuevo[a]).getTV()+";"+listaHabitaciones.get(nuevo[a]).getCafetera()+";"+listaHabitaciones.get(nuevo[a]).getHipo()+";"+listaHabitaciones.get(nuevo[a]).getPlancha()+";"+
+		listaHabitaciones.get(nuevo[a]).getSecador()+";"+listaHabitaciones.get(nuevo[a]).getVoltaje()+";"+listaHabitaciones.get(nuevo[a]).getUSBA()+";"+listaHabitaciones.get(nuevo[a]).getUSBC()+";"+listaHabitaciones.get(nuevo[a]).getDesayuno()+"\n";
 			
 		}
 		return fin;
@@ -273,8 +268,23 @@ public class CoordinadorInventario {
 				String tipo= partes[5];
 				String extras= partes[6];
 				String tarifa = partes[7]; 
-				ArrayList<String> TamanosCamas= arreglarTamano(tamano);
-				Habitacion nuevo = new Habitacion(numero, ubicacion, capacidad, camas, TamanosCamas, tipo, extras, tarifa);
+				
+				
+				Boolean Aire = Boolean.parseBoolean(partes[8]);
+				Boolean calefaccion = Boolean.parseBoolean(partes[9]);
+				String dimensionCamas = partes[10];
+				Boolean television = Boolean.parseBoolean(partes[11]);
+				Boolean cafetera = Boolean.parseBoolean(partes[12]);
+				Boolean hipoalergenicos = Boolean.parseBoolean(partes[13]);
+				Boolean plancha = Boolean.parseBoolean(partes[14]);
+				Boolean secador = Boolean.parseBoolean(partes[15]);
+				String voltaje = partes[16];
+				Boolean USBA = Boolean.parseBoolean(partes[17]);
+				Boolean USBC = Boolean.parseBoolean(partes[18]);
+				Boolean desayuno = Boolean.parseBoolean(partes[19]);
+				Habitacion nuevo = new Habitacion(numero, ubicacion, capacidad, camas, tamano, tipo, extras, tarifa,Aire,calefaccion,dimensionCamas,television,cafetera, hipoalergenicos
+						,plancha,secador,voltaje,USBA,USBC,desayuno);
+
 				listaHabitaciones.put(numero, nuevo);
 				linea = br.readLine();
 		}

@@ -17,14 +17,24 @@ public class Habitacion
 	private int camas;
 	private String ubicacion;
 	private int capacidad;
-	private ArrayList<String> Tamano;
+	private String Tamano;
 	private String tipo;
 	private String Extra; 
 	private String tarifa;
+	private Boolean Aire,calefaccion,television, cafetera, Hipoalergenicos, plancha, secador, USBA, USBC, desayuno; 
+	//private Boolean calefaccion;
+	private String dimensionCamas;
+	private String voltaje; 
+	
 	private Map<LocalDate, Boolean> availability = new HashMap<>();
 	
-	public Habitacion (String nombre,String ubicacion, int capacidad, int camas, ArrayList<String> Tamano, String tipo, String Extra, String tarifa)
+	public Habitacion (String nombre,String ubicacion, int capacidad, int camas, String Tamano, String tipo, String Extra, String tarifa, Boolean Aire,
+			Boolean calefaccion, String dimensionCamas, Boolean television, Boolean cafetera, Boolean Hipoalergenicos, Boolean plancha, Boolean secador, String voltaje, 
+			Boolean USBA, Boolean USBC, Boolean desayuno)
 	{
+		
+		//,Aire,calefaccion,dimensionCamas,television,cafetera, hipoalergenicos
+		//,plancha,secador,voltaje,USBA,USBC,desayuno);
 		this.nombre = nombre;
 		this.ubicacion = ubicacion;
 		this.capacidad=capacidad;
@@ -33,6 +43,18 @@ public class Habitacion
 		this.tipo=tipo;
 		this.Extra=Extra;
 		this.tarifa=tarifa;
+		this.Aire=Aire;
+		this.calefaccion=calefaccion;
+		this.dimensionCamas=dimensionCamas;
+		this.television=television;
+		this.cafetera=cafetera;
+		this.Hipoalergenicos=Hipoalergenicos;
+		this.plancha=plancha;
+		this.secador=secador;
+		this.voltaje=voltaje;
+		this.USBA=USBA;
+		this.USBC=USBC;
+		this.desayuno=desayuno;
 		LocalDate date = LocalDate.now();
 		for (int i = 0; i < 730; i++) {
             availability.put(date.plusDays(i), true);
@@ -44,7 +66,6 @@ public class Habitacion
 	{
 		return nombre;
 	}
-	
 	public int getCapacidad()
 	{
 		return capacidad;
@@ -53,10 +74,9 @@ public class Habitacion
 	{
 		return camas;
 	}
-	public ArrayList<String> getTamano(){
+	public String getTamano(){
 		return Tamano; 
 	}
-	
 	public String getUbicacion()
 	{
 		return ubicacion;
@@ -72,18 +92,55 @@ public class Habitacion
 	public String getTarifa() {
 		return tarifa;
 	}
-	public String getTamanoString() {
-		String tamanos="";
-		if (Tamano.size()>1) {
-			for (int a =0; a< Tamano.size();a++) {
-			tamanos+= Tamano.get(a)+",";
-			}
-		}
-		else {
-			tamanos= Tamano.get(0);
-		}
+	//public String getTamanoString() {
+	//	String tamanos="";
+	//	if (Tamano.size()>1) {
+	//		for (int a =0; a< Tamano.size();a++) {
+	//		tamanos+= Tamano.get(a)+",";
+	//		}
+	//	}
+	//	else {
+	//		tamanos= Tamano.get(0);
+	//	}
 		
-		return tamanos;
+	//	return tamanos;
+	//}
+	
+	public Boolean getAire() {
+		return Aire;
+	}
+	public Boolean getCalefaccion() {
+		return calefaccion;
+	}
+	public String getDimensionesCamas() {
+		return dimensionCamas;
+	}
+	public Boolean getTV() {
+		return television;
+	}
+	public Boolean getCafetera() {
+		return cafetera;
+	}
+	public Boolean getHipo() {
+		return Hipoalergenicos;
+	}
+	public Boolean getPlancha() {
+		return plancha ;
+	}
+	public Boolean getSecador() {
+		return secador;
+	}
+	public String getVoltaje() {
+		return voltaje;
+	}
+	public Boolean getUSBA() {
+		return USBA;
+	}
+	public Boolean getUSBC() {
+		return USBC;
+	}
+	public Boolean getDesayuno() {
+		return desayuno;
 	}
 	
 	public void setTarifa(String nuevo) {
@@ -101,7 +158,7 @@ public class Habitacion
 	public void setCamas(int nuevo) {
 		camas=nuevo;
 	}
-	public void setTamano(ArrayList<String> nuevo) {
+	public void setTamano(String nuevo) {
 		Tamano=nuevo;
 	}
 	public void setTipo(String nuevo) {
@@ -109,6 +166,43 @@ public class Habitacion
 	}
 	public void setExtra(String nuevo) {
 		Extra=nuevo;
+	}
+	
+	public void SetAire(Boolean nuevo) {
+		Aire=nuevo;
+	}
+	public void SetCalefaccion(Boolean nuevo) {
+		calefaccion=nuevo;
+	}
+	public void SetDimensionesCamas(String nuevo) {
+		dimensionCamas=nuevo;
+	}
+	public void SetTV(Boolean nuevo) {
+		television=nuevo;
+	}
+	public void SetCafetera(Boolean nuevo) {
+		cafetera=nuevo;
+	}
+	public void SetHipo(Boolean nuevo) {
+		Hipoalergenicos=nuevo;
+	}
+	public void SetPlancha(Boolean nuevo) {
+		plancha=nuevo;
+	}
+	public void SetSecador(Boolean nuevo) {
+		secador=nuevo;
+	}
+	public void SetVoltaje(String nuevo) {
+		voltaje=nuevo;
+	}
+	public void SetUSBA(Boolean nuevo) {
+		USBA=nuevo;
+	}
+	public void SetUSBC(Boolean nuevo) {
+		USBC=nuevo;
+	}
+	public void SetDesayuno(Boolean nuevo) {
+		desayuno=nuevo;
 	}
 	
 	private double getConsumos()

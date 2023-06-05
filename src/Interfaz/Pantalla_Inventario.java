@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +20,8 @@ public class Pantalla_Inventario extends JFrame  {
 	
 	
 	public Pantalla_Inventario(List<String> respuesta){
-		this.setLocationRelativeTo(null);
-		this.setSize(new Dimension(1400,500));
+		this.setLocation(0,0);
+		this.setSize(new Dimension(1400,800));
 		this.getContentPane().setBackground(new Color (244,238,226));
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
@@ -42,11 +43,18 @@ public class Pantalla_Inventario extends JFrame  {
 		base.setLayout(new FlowLayout());
 		for ( int a =0 ; a< respuesta.size();a++) {
 			JLabel label = new JLabel(respuesta.get(a));
+			label.setFont(new Font ("Consolas",Font.PLAIN,6));
 			base.add(label);			
 		}
-		frame.add(base);
+		//frame.add(base);
 		
-		
+		System.out.println("HOLA");
 		frame.add(base,BorderLayout.CENTER);
+		JPanel base1 = new JPanel();
+		base1.setBackground(Color.black);
+		base1.setLayout(new BorderLayout());
+		base1.setVisible(true);
+		frame.add(base1,BorderLayout.WEST);
+		
 	}
 }

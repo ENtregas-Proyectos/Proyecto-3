@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Modelo.CoordinadorInventario;
+import Modelo.NuevoCuarto;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -36,13 +37,14 @@ public class Principal_admin extends JFrame implements ActionListener{
 	 
 		
 	public Principal_admin() {
-		setLocationRelativeTo(null);
+		setLocation(0,0);
+		//setLocationRelativeTo(null);
 		setTitle("Admin");
 		getContentPane().setBackground(new Color (244,238,226));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		
-		setSize(1400,500);
+		setSize(1400,800);
 		setBackground(new Color (244,238,226));
 		PanelLogo(this);
 		botones(this);
@@ -112,14 +114,15 @@ public class Principal_admin extends JFrame implements ActionListener{
 			JOptionPane.showMessageDialog(null, "Archivo cargado", "Archivo", JOptionPane.INFORMATION_MESSAGE);
 		}
 		if ( e.getSource()== CargarHabitacion) {
-			Coordinador.AgregarCuarto();
-			Coordinador.escribirArchivo();			
-			JOptionPane.showMessageDialog(null, "Habitacion Cargada", "Habitacion", JOptionPane.INFORMATION_MESSAGE);
+			
+			NuevoCuarto intento=new NuevoCuarto();
+			Coordinador.escribirArchivo();
 		}
 		if ( e.getSource()== ActualizarInformacion) {
 			Coordinador.modificarCuarto();
-			Coordinador.escribirArchivo();
+			NuevoCuarto intento=new NuevoCuarto();
 			JOptionPane.showMessageDialog(null, "Habitacion Actualizada", "Habitacion", JOptionPane.INFORMATION_MESSAGE);
+			Coordinador.escribirArchivo();
 			
 			
 		}
