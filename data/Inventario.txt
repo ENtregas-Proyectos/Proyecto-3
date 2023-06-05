@@ -1,3 +1,4 @@
+123;centro;1;1;sencilla;Suite;cocina;123;true;true;1232;true;true;true;true;true;333;true;true;true
 201;Centro;5;3;Queen,Queen,Kid;Suite;Balcon;90000;true;true;160x90,190x90,100x20;false;false;true;false;true;220v;false;true;true
 999;Esquina;5;3;King,Queen,Kid;Suite Doble; Balcon y Vista;120000;true;true;160x90,190x90,100x20;false;false;true;false;true;220v;false;true;true
 303;Esquina;5;3;King,Queen,Kid;Suite Doble; Balcon y Vista;120000;true;true;160x90,190x90,100x20;false;false;true;false;true;220v;false;true;true
