@@ -24,7 +24,7 @@ public class Principal_admin extends JFrame implements ActionListener{
 	
 	private static PanelLogo panelLogo;
 	private static JButton inventario;
-	private static  JButton CrearInventario;
+	private static JButton CrearInventario;
 	private static JButton CargarArchivo ;
 	private static JButton CargarHabitacion;
 	private static JButton ActualizarInformacion ;
