@@ -48,7 +48,7 @@ public class Pantalla_Inventario extends JFrame  {
 		}
 		//frame.add(base);
 		
-		System.out.println("HOLA");
+		
 		frame.add(base,BorderLayout.CENTER);
 		JPanel base1 = new JPanel();
 		base1.setBackground(Color.black);

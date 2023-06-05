@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import javax.swing.JOptionPane;
 
 public class Principal_admin extends JFrame implements ActionListener{
 	public CoordinadorInventario Coordinador = new CoordinadorInventario();
+	File Cuartos= new File("./data/Habitaciones.txt");
 	
 	private static PanelLogo panelLogo;
 	private static JButton inventario;
@@ -114,7 +116,7 @@ public class Principal_admin extends JFrame implements ActionListener{
 			JOptionPane.showMessageDialog(null, "Inventario creado", "Inventario", JOptionPane.INFORMATION_MESSAGE);
 		}
 		if ( e.getSource()== CargarArchivo) {
-			Coordinador.cargarCuartos();
+			Coordinador.cargarCuartos(Cuartos);
 			Coordinador.escribirArchivo();
 			JOptionPane.showMessageDialog(null, "Archivo cargado", "Archivo", JOptionPane.INFORMATION_MESSAGE);
 		}

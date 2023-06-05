@@ -36,7 +36,7 @@ public class CoordinadorInventario {
 		
 	}
 	
-	public void cargarCuartos() {
+	public void cargarCuartos(File Cuartos) {
 		try { 
 			BufferedReader br = new BufferedReader(new FileReader(Cuartos));
 			String linea = br.readLine();
@@ -78,15 +78,10 @@ public class CoordinadorInventario {
 		
 		
 	}
-	private  ArrayList<String> arreglarTamano(String lista) {
-		 ArrayList<String> TamanosCamas = new ArrayList<String>();
-		 String [] partes= lista.split(",");
-		 for (int a =0; a< partes.length; a++) {
-			 TamanosCamas.add(partes[a]);	 
-		 }
-		return TamanosCamas;
-		
+	public Hashtable<String, Habitacion> getLista() {
+		return listaHabitaciones;
 	}
+	
 	
 	public void anadir (Habitacion nuevo, String nombre) {
 		listaHabitaciones.put(nombre, nuevo);
@@ -119,8 +114,7 @@ public class CoordinadorInventario {
 		}
 	public  List<String> consultarInventario() {
 	 Set<String> nombres = listaHabitaciones.keySet();
-	 System.out.println("Lista bien");
-	 System.out.println(listaHabitaciones.size());
+	 
 	 Object[] nuevo = nombres.toArray();
 	 List<String> inventariofinal = new ArrayList<>();
 	 if (listaHabitaciones.size()==0) {
@@ -316,7 +310,7 @@ public class CoordinadorInventario {
 
 	    catch (Exception e) {
 	      e.getStackTrace();
-	      System.out.print("CAOS");
+	     
 	    }
 	}
 }
