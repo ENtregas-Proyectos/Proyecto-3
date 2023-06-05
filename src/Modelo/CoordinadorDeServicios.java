@@ -19,6 +19,7 @@ public class CoordinadorDeServicios
 	
 	private Hashtable<String, Servicio> listaServicios = new Hashtable<String , Servicio>();
 	private Hashtable<String, Consumo> listaConsumos = new Hashtable<String, Consumo>();
+	private Hashtable<String, Integer> contadorServicios = new Hashtable<String, Integer>();
 	File Servicios= new File("./data/Servicios.txt");
 	
 	
@@ -78,51 +79,71 @@ public class CoordinadorDeServicios
 		
 	}
 	
-	public void AgregarServicioAHabitacion(String nombre, String srv, int precio, int rta, String empleado) 
-	{
-		boolean continuar = true;
-		System.out.println("Añadir un servicio a numero de habitacion");
-		while (continuar) 
-		{
-			System.out.println("Cual es el numero de la habitacion?");
-			 Consumo nuevo = new Consumo(nombre, empleado,srv, precio);
-			 listaConsumos.put(nombre, nuevo);
-			 if (rta == 1)
-			 {
-				 RegistrarPago(nombre, empleado, srv, precio);
-				 
-			 }
-			 
-			 else if(rta == 2)
-			 {
-				 continuar = false;
-			 }
-				 
-			 
-		}
-	}
+	 public void AgregarServicioAHabitacion(String nombre, String srv, int precio, int rta, String empleado) 
+	 {
+	        boolean continuar = true;
+	        System.out.println("Añadir un servicio a número de habitación");
+	        
+	        while (continuar) 
+	        {
+	            System.out.println("¿Cuál es el número de la habitación?");
+	            String numeroHabitacion = input(" ");
+	            Consumo nuevo = new Consumo(nombre, empleado, srv, precio);
+	            listaConsumos.put(numeroHabitacion, nuevo);
+	            
+	            if (contadorServicios.containsKey(srv)) 
+	            {
+	                int contador = contadorServicios.get(srv);
+	                contadorServicios.put(srv, contador + 1);
+	            } 
+	            else 
+	            {
+	                contadorServicios.put(srv, 1);
+	            }
+	            if (rta == 1) 
+	            {
+	                RegistrarPago(numeroHabitacion, empleado, srv, precio);
+	            } 
+	            
+	            else if (rta == 2) 
+	            {
+	                continuar = false;
+	            }
+	        }
+	    }
 	
-	public void AgregarServicioAHuesped(String nombre, String srv, int precio, int rta, String empleado) 
-	{
-		boolean continuar = true;
-		System.out.println("Añadir un servicio a nombre de huesped");
-		while (continuar) {
-			System.out.println("Cual es el nombre del huesped? ");
-			 Consumo nuevo = new Consumo(nombre, empleado, srv, precio);
-			 listaConsumos.put(nombre, nuevo);
-			 if (rta == 1)
-			 {
-				 RegistrarPago(nombre, empleado, srv, precio);
-				 
-			 }
-			 
-			 else if(rta == 2)
-			 {
-				 continuar = false;
-			 }
-			 
-	}
-	}
+	
+	 public void AgregarServicioAHuesped(String nombre, String srv, int precio, int rta, String empleado) 
+	 {
+	        boolean continuar = true;
+	        System.out.println("Añadir un servicio a nombre de huésped");
+	        
+	        while (continuar) 
+	        {
+	            System.out.println("¿Cuál es el nombre del huésped?");
+	            String nombreHuesped = input(" ");
+	            Consumo nuevo = new Consumo(nombre, empleado, srv, precio);
+	            listaConsumos.put(nombreHuesped, nuevo);
+	            
+	            if (contadorServicios.containsKey(srv)) 
+	            {
+	                int contador = contadorServicios.get(srv);
+	                contadorServicios.put(srv, contador + 1);
+	            } 
+	            else 
+	            {
+	                contadorServicios.put(srv, 1);
+	            }
+	            if (rta == 1) 
+	            {
+	                RegistrarPago(nombreHuesped, empleado, srv, precio);
+	            } 
+	            else if (rta == 2) 
+	            {
+	                continuar = false;
+	            }
+	        }
+	    }
 	
 	public void RegistrarPago(String nombre, String empleado, String srv, int precio)
 	{
